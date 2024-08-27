@@ -1,0 +1,19 @@
+import unittest
+from datetime import datetime
+from tkinter import Label
+from src.digital_clock import atualizar_relogio
+
+class TestDigitalClock(unittest.TestCase):
+    def test_time_format(self):
+        # Sample test to check if the time format is correct
+        now = datetime.now().strftime("%H:%M:%S %p")
+        self.assertEqual(len(now), 11)  # Check if the length of the time string is correct
+        
+    def test_label_update(self):
+        # Check if label text is updated (mocking Tkinter Label update)
+        with unittest.mock.patch.object(Label, 'config') as mock_config:
+            atualizar_relogio()
+            self.assertTrue(mock_config.called)
+
+if __name__ == "__main__":
+    unittest.main()
